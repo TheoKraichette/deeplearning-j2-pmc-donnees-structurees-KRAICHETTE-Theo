@@ -13,6 +13,8 @@ from sklearn.preprocessing import StandardScaler
 from tensorflow import keras
 from tensorflow.keras import layers, regularizers
 
+keras.utils.set_random_seed(42)
+
 wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
 df_wine = pd.read_csv(wine_url, sep=';')
 df_wine['quality_3class'] = df_wine['quality'].apply(lambda q: 0 if q <= 4 else (1 if q <= 6 else 2))

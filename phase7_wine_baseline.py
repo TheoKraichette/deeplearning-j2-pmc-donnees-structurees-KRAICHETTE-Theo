@@ -17,6 +17,8 @@ from sklearn.metrics import confusion_matrix
 from tensorflow import keras
 from tensorflow.keras import layers
 
+keras.utils.set_random_seed(42)
+
 wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
 df_wine = pd.read_csv(wine_url, sep=';')
 

@@ -13,6 +13,8 @@ from sklearn.metrics import roc_auc_score
 from tensorflow import keras
 from tensorflow.keras import layers, regularizers
 
+keras.utils.set_random_seed(42)
+
 data = load_breast_cancer()
 X, y = data.data, data.target
 print("shape :", X.shape)

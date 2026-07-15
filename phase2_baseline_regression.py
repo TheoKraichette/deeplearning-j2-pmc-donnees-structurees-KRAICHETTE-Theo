@@ -14,6 +14,8 @@ from sklearn.preprocessing import StandardScaler
 from tensorflow import keras
 from tensorflow.keras import layers
 
+keras.utils.set_random_seed(42)
+
 housing = fetch_california_housing()
 X, y = housing.data, housing.target
 X_train_full, X_test, y_train_full, y_test = train_test_split(X, y, test_size=0.2, random_state=42)

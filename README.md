@@ -42,15 +42,16 @@ Puis ouvrir http://localhost:6006
 
 ## Tableau comparatif
 
-| Dataset | Tâche | val_accuracy / val_MAE | val_loss finale | Epochs réels | Meilleur lr | Meilleure taille couche | Régularisation |
+| Dataset | Tâche | val_accuracy / val_MAE | val_loss finale | Epochs (best) | Meilleur lr | Meilleure taille couche | Régularisation |
 |---|---|---|---|---|---|---|---|
-| California Housing | Régression | MAE 0.35 | 0.28 (MSE) | 100 | 0.001 (défaut) | 64→32 | Aucune (baseline) |
-| Pima Diabetes | Classification binaire | acc 0.78 (tuné 0.80) | 0.52 | ~100 | 0.0005 (tuner) | 32→48 (tuner) | L2 + Early Stopping |
-| Wine Quality | Multiclassification | acc 0.85 | 0.47 | 75 | 0.001 (défaut) | 64→32 + BN | L2 + BatchNorm |
+| California Housing | Régression | MAE 0.36 | 0.28 (MSE) | 100 | 0.001 (défaut) | 64→32 | Aucune (baseline) |
+| Pima Diabetes | Classification binaire | acc 0.76 (tuné ~0.80) | 0.50 (BCE) | 87 | 0.0005 (tuner) | 32→48 (tuner) | L2 + Early Stopping |
+| Wine Quality | Multiclassification | acc 0.83 | 0.50 (CE) | 47 | 0.001 (défaut) | 64→32 + BN | L2 + BatchNorm |
 
 Bonus (dataset perso, Partie B) : **Breast Cancer**, binaire, 30 features → test accuracy **0.974** / AUC **0.993**.
 
-> Les `val_loss` ne se comparent pas entre lignes (MSE pour la régression, cross-entropy pour les classifs). Chiffres issus de runs sans seed fixe : ils bougent de ±1-2 points d'un run à l'autre.
+> **Lire les `val_loss`** : une loss de classification se compare à la loss d'un modèle *aléatoire* (`ln(2)=0.69` en binaire, `ln(3)=1.10` à 3 classes), pas à 0. Une loss ~0.50 avec ~80 % d'accuracy est donc saine : le modèle bat nettement le hasard sans être sur-confiant. Les `val_loss` ne se comparent pas entre lignes (MSE en régression, cross-entropy en classif).
+> Chiffres pris à la **même epoch** (le meilleur modèle, `argmin val_loss`) pour que loss et accuracy décrivent le même modèle. Runs sans seed fixe → ±1-2 points d'un run à l'autre.
 
 ## Ce que le tableau révèle
 

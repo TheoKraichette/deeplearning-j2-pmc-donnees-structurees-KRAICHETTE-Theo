@@ -6,14 +6,34 @@ TensorBoard, régularisation, keras-tuner, BatchNorm).
 
 ## Lancer le projet
 
-Tout tourne dans Docker.
+Tout tourne dans Docker. Démarrer le conteneur une seule fois :
 
 ```bash
 docker compose up -d
-docker compose exec dl python phase1_pipeline_california.py
 ```
 
-TensorBoard :
+Puis lancer chaque phase (dans l'ordre) :
+
+```bash
+# California Housing (régression)
+docker compose exec dl python phase1_pipeline_california.py
+docker compose exec dl python phase2_baseline_regression.py
+docker compose exec dl python phase3_tensorboard_california.py
+
+# Pima Diabetes (classification binaire)
+docker compose exec dl python phase4_pima_baseline.py
+docker compose exec dl python phase5_pima_regularisation.py
+docker compose exec dl python phase6_pima_kerastuner.py
+
+# Wine Quality (multiclasse)
+docker compose exec dl python phase7_wine_baseline.py
+docker compose exec dl python phase8_wine_batchnorm.py
+
+# Dataset personnel (Phase 9, partie B)
+docker compose exec dl python phase9_breast_cancer.py
+```
+
+TensorBoard (runs des phases 3, 8 et 9) :
 
 ```bash
 docker compose exec -d dl tensorboard --logdir=logs --host 0.0.0.0

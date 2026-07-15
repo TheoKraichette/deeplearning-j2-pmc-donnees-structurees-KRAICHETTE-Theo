@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Dossiers de tuning keras-tuner (plusieurs Mo, à ne pas committer)
+tuning_*/

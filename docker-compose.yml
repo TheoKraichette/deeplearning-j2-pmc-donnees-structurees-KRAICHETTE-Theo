@@ -1,0 +1,10 @@
+services:
+  dl:
+    build: .
+    container_name: j2-dl
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "6006:6006"   # TensorBoard
+    tty: true
